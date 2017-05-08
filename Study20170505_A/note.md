@@ -1,4 +1,4 @@
-﻿1） Github网站中创建项目javastudy
+﻿1） Github网站中创建项目javastudy   https://github.com/jameswu525
 	指定Public权限以及README.md
 	得到Git资料库地址：https://github.com/jameswu525/javastudy.git
 
