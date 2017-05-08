@@ -10,6 +10,8 @@ import java.util.Scanner;
  */
 public class InterfaceDemo implements IWalker, ISwim {
 
+	private static Scanner sc;
+
 	public void walk() {
 		System.out.println("I can walk on road");
 	}
@@ -22,8 +24,7 @@ public class InterfaceDemo implements IWalker, ISwim {
 //		String line = con.readLine();
 //		System.out.println(line);
 		
-		// Scanner方法读取输入
-		Scanner sc = new Scanner(System.in);
+		sc = new Scanner(System.in);
 		String line2 = sc.nextLine();
 		System.out.println(line2);
 		
