@@ -1,7 +1,7 @@
 package org.jimmy.study;
 
 /**
- * 这是测试的第一个例子。
+ * 这是测试的第一个例子，创建一只两牺动物。
  * @author JimmyWu
  *
  */
