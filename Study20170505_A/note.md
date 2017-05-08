@@ -19,3 +19,6 @@
 
 注： 导入已存在的Git项目，同上操作，得到在线的Project后，eclipse导入已存在项目。
 合作开发（Fork项目、修改后Commit、Push，Pull request给原项目作者）的方式： http://blog.csdn.net/qq_26787115/article/details/52133008
+
+Eclipse中Help-Market，搜索需要的plugin插件后安装。
+
