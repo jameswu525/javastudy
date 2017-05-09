@@ -18,7 +18,7 @@ public class InterfaceDemo implements IWalker, ISwim {
 
 	public static void main(String[] args) {
 		System.out.println(Arrays.toString(args));
-		System.out.print("input:");
+		System.out.print("input :");
 		// 控制台读取输入
 //		Console con = System.console();
 //		String line = con.readLine();
