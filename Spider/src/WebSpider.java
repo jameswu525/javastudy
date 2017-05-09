@@ -21,7 +21,7 @@ public class WebSpider {
 		try {
 		url = new URL("http://www.163.com");
 		urlconn = url.openConnection();
-		pw = new PrintWriter(new FileWriter("d:\\url.txt"), true);
+		pw = new PrintWriter(new FileWriter(".\\url.txt"), true);
 		
 		br = new BufferedReader(new InputStreamReader(urlconn.getInputStream()));
 		String buf = null;

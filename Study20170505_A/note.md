@@ -1,4 +1,7 @@
-﻿1） Github网站中创建项目javastudy   https://github.com/jameswu525
+﻿http://study.163.com
+
+=========================================================================
+1） Github网站中创建项目javastudy   https://github.com/jameswu525
 	指定Public权限以及README.md
 	得到Git资料库地址：https://github.com/jameswu525/javastudy.git
 
@@ -8,7 +11,7 @@
 2） 拷贝第一步的地址，在Git Repositories视图中右键，Paste Git URI（或者点击Clone A Git repository），下一步
 	选择master，下一步选择项目文件存放目录（即开发目录）
 	完成后，资料库视图中出现在线创建的项目名称的目录。
-	右键属性，增加key-value user.name以及user.email，
+	右键属性，增加key-value user.nam以及user.email，
 	
 
 3） eclipse中创建项目或者导入已有的项目（在workspace目录下），点击右键-team-share project，选择刚刚导入的Git项目。
@@ -22,6 +25,7 @@
 
 Eclipse中Help-Market，搜索需要的plugin插件后安装。
 
+=================================================================
 
 和系统相关的常用类：
 1， System
@@ -40,3 +44,59 @@ BigDecimal
 String   // 不可变字符串
 StringBuffer // 可变字符串
 StringBuilder // 可变字符串
+
+
+
+================MAVEN=====================
+http://maven.apache.org/release-notes-all.html
+==> Binary zip archive	apache-maven-3.5.0-bin.zip
+两个环境变量可以配置：
+MAVEN_HOME = D:\maven\apache-maven-3.5.0
+MAVEN_OPTS = -Xms128m -Xmx512m(可选)
+在path变量末尾加入“%MAVEN_HOME%\bin;”
+验证是否安装成功       mvn -v
+(http://blog.csdn.net/jiuqiyuliang/article/details/46053543)
+
+使用 Maven 给我们带来的最直接的好处，就是统一管理jar 包，那么这些 jar 包存放在哪里呢？它们就在您的 本地仓库 中
+实际上我们可以将本地仓库理解“缓存”，目的是存放jar包。开发项目时项目首先会从本地仓库中获取 jar 包，当无法获取指定 jar 包的时候，本地仓库会从 远程仓库（或 中央仓库） 中下载 jar 包，并“缓存”到本地仓库中以备将来使用。
+远程仓库（中央仓库）是 Maven 官方提供的，可通过 http://search.maven.org/ 来访问
+Maven会将下载的类库（jar包）放置到本地的一个目录下，如果想重新定义这个目录的位置就需要修改Maven本地仓库的配置：
+
+修改文件：D:\maven\apache-maven-3.2.3\conf\setting.xml
+--> <localRepository>D:\maven\repository</localRepository>
+
+mvn help:system
+执行完该命令之后，在D:\maven\repository下面就会多出很多文件，这些文件就是maven从中央仓库下载到本地仓库的文件，maven已经开始为我们工作了。
+
+
+Eclipse 中配置
+点击Installations –> add 选择maven安装目录，这里我的Maven安装目录为D:\maven\apache-maven-3.2.3，选择你的Maven安装目录，并点击确定, 之后可以点击Apply,点击OK，即可完成 
+
+设置User Settings 
+Global Settings选择maven 安装目录下conf文件夹下的settings.xml，这里我的Maven安装目录为D:\maven\apache-maven-3.2.3\conf\settings.xml，选择你的Maven安装目录，检查Local Repository 项，如果为D:/maven/repository则配置成功
+
+创建测试的maven项目，新建Project-Maven-Simple-org.jimmy | maventest | jar(普通)/war(web)
+web项目需要在src/main/webapp下创建META-INF、WEB-INF以及 
+
+
+=====================================================================
+http://tomcat.apache.org/       8.5.14
+下载zip并且解压后，参照官方document   http://tomcat.apache.org/tomcat-8.5-doc/setup.html
+
+参照 http://blog.csdn.net/lixingshi/article/details/49874213
+添加TOMCAT_HOME的环境变量，值为d:\Program Files\tomcat7。再添加CATALINA_HOME环境变量，值为%TOMCAT_HOME%，在添加CATALINA_BASE环境变量，值为%TOMCAT_HOME%。免安装的版本需要这两个环境变量，写成带“%”号的这样作是为了以后更改版本的方便，可以直接修改TOMCAT_HOME的值，改变CATALINA_HOME和CATALINA_BASE的值。
+修改根目录下的bin文件夹下startup.bat文件
+或者增加JAVA_HOME环境变量
+C:\>service.bat install
+tomcat8w.exe 打开控制面板  、服务里面打开/关闭         或者以下方式：
+net start服务名
+net stop服务名
+http://localhost:8080/
+
+Eclipse内配置Server ，增加TOMCAT8.5
+
+配置Tomcat的管理员
+conf/tomcat-users.xml
+<role rolename="manager-gui"/>
+<user username="tomcat" password="s3cret" roles="manager-gui"/>
+===========================================================
