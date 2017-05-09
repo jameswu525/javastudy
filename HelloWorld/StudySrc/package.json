@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "express": "^4.15.2",
+    "mysql": "^2.13.0",
+    "pg": "^6.1.5",
+    "pgpass": "^1.0.1",
+    "postgresql": "^0.0.1",
+    "split": "^1.0.0"
+  },
+  "name": "studysrc",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

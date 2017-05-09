@@ -1,0 +1,32 @@
+<html ng-app='main_mod'>
+<head>
+	<title>测试界面</title>
+	<script src="./angular.js"></script>
+	<script>
+		var mod=angular.module('main_mod', []);
+		// mod.controller('con1', function($scope, $http){
+		// 	$scope.alert=function (txt){
+		// 		window.alert(txt);
+		// 	};
+
+		// 	// $http.get('sample.txt').success(function(arr) {
+		// 	// 	window.alert(arr);
+		// 	// }).error(function() {
+		// 	// 	window.alert('Error');
+		// 	// });
+		// });
+
+	</script>
+</head>
+<body ng-controller='con1'>
+
+	<input type="text" value='' ng-model='a'>
+	<input type="text" value='' ng-model='b'>
+	<div>
+		结果是: {{a*b}}
+	</div>
+
+	<input type="button" value="FUN" ng-click="alert(a*b)">
+
+</body>
+</html>
