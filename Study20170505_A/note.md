@@ -35,3 +35,8 @@ BigDecimal
 0.01 + 0.09  // 0.09999999999999999
 创建BigDecimal时建议使用String构造
 
+
+
+String   // 不可变字符串
+StringBuffer // 可变字符串
+StringBuilder // 可变字符串
