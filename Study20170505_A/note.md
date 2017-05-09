@@ -23,3 +23,15 @@
 Eclipse中Help-Market，搜索需要的plugin插件后安装。
 
 
+和系统相关的常用类：
+1， System
+	System.gc(); // 强制运行回收，以上不用的对象将被清理，  一般不用！！！
+2， Runtime   -> Runtime.getRuntime.gc();
+
+Math
+abs
+
+BigDecimal
+0.01 + 0.09  // 0.09999999999999999
+创建BigDecimal时建议使用String构造
+
