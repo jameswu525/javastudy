@@ -9,6 +9,7 @@ http.createServer(function(request, response) {
 		var pathname = url.parse(request.url).pathname;
 		pathname = pathname.replace(patten,'');
 		console.log(pathname);
+		
 		// optfile['readfileSync']('./view/'+pathname+'.html', response);
 
 		function recall(data) {
