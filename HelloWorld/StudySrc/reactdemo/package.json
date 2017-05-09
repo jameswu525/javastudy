@@ -1,0 +1,16 @@
+{
+  "name": "reactdemo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "dev": "browser-sync start --server --files *.*"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "browser-sync": "^2.18.8",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
+  }
+}
