@@ -23,7 +23,7 @@ public class InterfaceDemo implements IWalker, ISwim {
 //		Console con = System.console();
 //		String line = con.readLine();
 //		System.out.println(line);
-		
+		System.out.print("Input your string:");
 		sc = new Scanner(System.in);
 		String line2 = sc.nextLine();
 		System.out.println(line2);
