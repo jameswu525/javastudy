@@ -1,9 +1,12 @@
 package org.jimmy.util;
 
 public class MathUtil {
-	
+
+	private MathUtil() {	}
+
 	/**
 	 * 判断两个double数据是否相等，相等返回true
+	 * 
 	 * @param a
 	 * @param b
 	 * @return

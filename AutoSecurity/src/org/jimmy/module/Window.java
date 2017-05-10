@@ -1,16 +1,23 @@
 package org.jimmy.module;
 
-import org.jimmy.util.MathUtil;
+import java.awt.Frame;
 
-public class Window {
-	private static final Double LENGTH_C_MIN = 30.0;
+import org.jimmy.util.MathUtil;
+import org.jimmy.util.SystemUtil;
+
+public class Window extends Frame{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private static final Double LENGTH_C_MIN = 35.0;
 	private static final Double LENGTH_C_MAX = 65.0;
-	private static final Double LENGTH_C_STEP = 0.5;
+	private static final Double LENGTH_C_STEP = 2.0;
 	
 	private static Window instance = new Window();
 	private Double length_a = 90.0;
 	private Double length_b = 60.0;
-	private Double length_c = 30.0;
+	private Double length_c = 65.0;
 	
 	private Window() {}
 	
@@ -28,7 +35,8 @@ public class Window {
 	 */
 	public boolean opening() {
 		length_c = Math.min(length_c + LENGTH_C_STEP, LENGTH_C_MAX);
-//		System.out.print(length_c + "/");
+		SystemUtil.print(this, "opening ..." + getAngle());
+		System.out.println(SystemUtil.printTime(this) + "opening ..." + getAngle());
 		return MathUtil.isEqual(length_c, LENGTH_C_MAX);
 	}
 
@@ -37,7 +45,9 @@ public class Window {
 	 * @return
 	 */
 	public boolean closing() {
-		length_c = Math.max(length_c - 0.5, LENGTH_C_MIN);
+		length_c = Math.max(length_c - LENGTH_C_STEP, LENGTH_C_MIN);
+		SystemUtil.print(this, "closing ..." + getAngle());
+		System.out.println(SystemUtil.printTime(this) + "closing ..." + getAngle());
 		return MathUtil.isEqual(length_c, LENGTH_C_MIN);
 	}
 	

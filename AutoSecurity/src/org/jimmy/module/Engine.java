@@ -1,5 +1,7 @@
 package org.jimmy.module;
 
+import org.jimmy.util.SystemUtil;
+
 public class Engine implements Runnable {
 	public static final int SWITCH_STOP = 0;
 	public static final int SWITCH_FORWARD = 1;
@@ -15,24 +17,22 @@ public class Engine implements Runnable {
 	
 	public void Controlling() {
 		while (true) {
+//			System.out.println(SystemUtil.printTime(this) + "启动吗？  " + PLCSignal.signal_direction);
 			if (PLCSignal.signal_direction == SWITCH_FORWARD) {
-				Window.getInstance().opening();
+				if (Window.getInstance().closing()) {
+					PLCSignal.signal_direction = SWITCH_STOP;
+				}
 			} else if (PLCSignal.signal_direction == SWITCH_REVERSAL) {
-				Window.getInstance().closing();
+				if (Window.getInstance().opening()) {
+					PLCSignal.signal_direction = SWITCH_STOP;
+				}
 			}
-			try {
-				Thread.sleep(1000);
-			} catch (Exception e) {
-			}
-	}
+			SystemUtil.sleeping(1);
+		}
 	}
 
 	public void run() {
+		SystemUtil.print(this, "Engine running ...");
 		this.Controlling();
 	}
-	public static void main(String[] args) {
-
-	}
-
-
 }

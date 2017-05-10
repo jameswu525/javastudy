@@ -1,10 +1,13 @@
 package org.jimmy.module;
 
 public class InterruptButton {
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	private static InterruptButton instance = new InterruptButton();
+	private InterruptButton() {};
+	public static InterruptButton getInstance() {
+		return instance;
 	}
-
+	
+	public void interrupt() {
+		PLCSignal.cutSignal();
+	}
 }
