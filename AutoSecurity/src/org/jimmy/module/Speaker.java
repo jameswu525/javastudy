@@ -21,7 +21,6 @@ public class Speaker implements Runnable {
 					System.out.println(SystemUtil.printTime(this) + "Bee Bee Bee");
 				} else {
 					PLCSignal.signal_speak = SPEAK_OFF;
-					PLCSignal.signal_direction = Engine.SWITCH_FORWARD;
 					continuing = 0;
 				}
 			} else {
