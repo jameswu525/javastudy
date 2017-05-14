@@ -10,7 +10,12 @@ public class SystemDemo {
 	}
 
 	public static void main(String[] args) {
-		
+		System.out.println(Byte.MAX_VALUE);
+		System.out.println((1 << 30) * 2 -1);
+		System.out.println(Short.MAX_VALUE);
+		System.out.println(Integer.MAX_VALUE);
+		System.out.println(Integer.MIN_VALUE);
+		System.out.println(Long.MAX_VALUE);
 		// 拷贝数组
 		System.out.println();
 		int[] arr1 = {1,2,3,4,5,6};

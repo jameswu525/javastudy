@@ -9,7 +9,7 @@ import org.jimmy.util.SystemUtil;
 public class Monitor implements Runnable {
 	private static Monitor instance = new Monitor();
 	public static boolean person_comming_signal = false;
-	private static boolean proceed = false;
+	private static boolean called = false;
 
 	public static Monitor getInstance() {
 		return instance;
@@ -33,14 +33,14 @@ public class Monitor implements Runnable {
 			SystemUtil.sleeping(1);
 //			System.out.println(SystemUtil.printTime(this) + "有人吗？  " + person_comming_signal);
 			if (person_comming_signal) {
-				if (!proceed) {
+				if (!called) {
 					callIncident();
-					proceed = true;
+					called = true;
 				}
 			} else {
-				if (proceed) {
+				if (called) {
 					releaseIncident();
-					proceed = false;
+					called = false;
 				}
 			}
 		}

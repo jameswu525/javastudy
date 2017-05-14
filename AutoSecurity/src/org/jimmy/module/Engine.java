@@ -18,12 +18,12 @@ public class Engine implements Runnable {
 	public void Controlling() {
 		while (true) {
 //			System.out.println(SystemUtil.printTime(this) + "启动吗？  " + PLCSignal.signal_direction);
-			if (PLCSignal.signal_direction == SWITCH_FORWARD) {
-				if (Window.getInstance().closing()) {
+			if (PLCSignal.signal_direction == SWITCH_FORWARD && PLCSignal.signal_speak != Speaker.SPEAK_ON) {
+				if (OpenedWindow.getInstance().closing()) {
 					PLCSignal.signal_direction = SWITCH_STOP;
 				}
 			} else if (PLCSignal.signal_direction == SWITCH_REVERSAL) {
-				if (Window.getInstance().opening()) {
+				if (OpenedWindow.getInstance().opening()) {
 					PLCSignal.signal_direction = SWITCH_STOP;
 				}
 			}

@@ -1,13 +1,13 @@
 package org.jimmy.test;
 
 import java.awt.Button;
+import java.awt.Color;
 import java.awt.Frame;
+import java.awt.GridLayout;
+import java.awt.Panel;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseWheelEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -18,7 +18,7 @@ import org.jimmy.module.InterruptButton;
 import org.jimmy.module.Monitor;
 import org.jimmy.module.PLCSignal;
 import org.jimmy.module.Speaker;
-import org.jimmy.module.Window;
+import org.jimmy.module.OpenedWindow;
 import org.jimmy.util.SystemUtil;
 
 public class SceneDemo extends Frame{
@@ -88,19 +88,49 @@ public class SceneDemo extends Frame{
 
 	public static void main(String[] args) {
 		SceneDemo fr = new SceneDemo("Security Demo"); 
-		fr.setSize(300,200); 
+		fr.setLayout(new GridLayout(2, 1));
+		fr.setSize(400, 400); 
+		fr.setLocation(450, 200);
+		fr.setResizable(false);
+//		fr.setMaximumSize(new Dimension(400, 400));
+		
 		fr.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				System.exit(0);
 			}
 		});
+		
+		Panel p1 = new Panel();
+		p1.setLayout(new GridLayout(1, 3));
+		
 		TextArea txt = new TextArea();
-		Timer t = new Timer(500, new ActionListener() {
+		txt.setEditable(false);
+		final Color initC = txt.getBackground();
+		txt.setColumns(2);
+		txt.setRows(3);
+		txt.setText("1\tStartup; \n 2\tAction;");
+		Timer t = new Timer(300, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				OpenedWindow.getInstance().refresh();
 				if(PLCSignal.signal_speak == Speaker.SPEAK_ON) {
-					txt.setText("Bee Bee Bee ... ...");
+					if(txt.getBackground() == Color.RED) {
+						txt.setBackground(initC);
+					} else {
+						txt.setBackground(Color.RED);
+					}
+					txt.setText("正在报警");
 				} else {
-					txt.setText("窗口开度：" + Window.getInstance().getAngle());
+					txt.setBackground(initC);
+					String str = "";
+					double angel = OpenedWindow.getInstance().getAngel();
+					if (PLCSignal.signal_direction == Engine.SWITCH_FORWARD) {
+						str = "正在关窗 \t" + angel + "度角";
+					} else if (PLCSignal.signal_direction == Engine.SWITCH_REVERSAL) {
+						str = "正在开窗 \t" + angel + "度角";
+					} else {
+						str = "静止中 \t" + angel + "度角";
+					}
+					txt.setText(str);
 				}
 			}
 		});
@@ -110,6 +140,7 @@ public class SceneDemo extends Frame{
 			public void actionPerformed(ActionEvent e) {
 				startup();
 				t.start();
+				btn0.setLabel("Monitoring");
 //				new Thread(new Runnable() {
 //					public void run() {
 //						while(true) {
@@ -121,18 +152,18 @@ public class SceneDemo extends Frame{
 				btn0.setEnabled(false);
 			}
 		});
-		Button btn1 = new Button("NOBODY");
+		Button btn1 = new Button("Out");
 		btn1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Monitor.person_comming_signal = !Monitor.person_comming_signal;
 				if (Monitor.person_comming_signal) {
-					btn1.setLabel("BABY");
+					btn1.setLabel("In");
 				} else {
-					btn1.setLabel("NOBODY");
+					btn1.setLabel("Out");
 				}
 			}
 		});
-		Button btn2 = new Button("INTERRUPT");
+		Button btn2 = new Button("Igone");
 		btn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				InterruptButton.getInstance().interrupt();
@@ -141,10 +172,13 @@ public class SceneDemo extends Frame{
 		btn0.setSize(200, 50);
 		btn1.setSize(200, 50);
 		btn2.setSize(200, 50);
-		fr.add(btn0, "North");
-		fr.add(btn1, "East");
-		fr.add(btn2, "South");
-		fr.add(txt, "Center");
+		
+		p1.add(btn0);
+		p1.add(btn1);
+		p1.add(btn2);
+		
+		fr.add(p1);
+		fr.add(txt);
 		fr.setVisible(true); 
 		
 //		startup();
@@ -155,5 +189,5 @@ public class SceneDemo extends Frame{
 //		SystemUtil.sleeping(18);
 //		System.out.println("用例完成");
 	}
-
+	
 }

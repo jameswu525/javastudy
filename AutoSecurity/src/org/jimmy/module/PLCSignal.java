@@ -16,7 +16,7 @@ public class PLCSignal {
 //		System.out.println(SystemUtil.printTime(instance) + "监控吗？  " + is_Monitoring);
 		if (is_Monitoring == MONITORING_ON) {
 			SystemUtil.print(instance,  "send signal for speak & to close window");
-//			signal_direction = Engine.SWITCH_FORWARD;
+			signal_direction = Engine.SWITCH_FORWARD;
 			signal_speak = Speaker.SPEAK_ON;
 		} else {
 			System.out.println("recived signal, but the system if off. ");
