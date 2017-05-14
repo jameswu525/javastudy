@@ -137,3 +137,207 @@ try (Stream file = new FileStream("");) { //注：()中的代码，new出的资�
 }
  
 ==============================================================
+
+多线程
+并行：两个以上事件在同一时刻点发生；  （多核，同时点执行多个）
+并发：两个以上事件在同一时间段内发生；（单核只能并发，不能并行）
+
+两种启动多线程的方法：
+		Runtime rt = Runtime.getRuntime();
+		rt.exec("Notepad");  // Runtime
+		ProcessBuilder pb = new ProcessBuilder("Notepad");
+		pb.start();				// ProcessBuilder
+		
+创建现成的两个方法；
+// 方法1：继承Thread 类
+class XXX extends Thread{run() {...}}
+     new XXX().start();   // 实现run方法，但不能运行run();
+==>或者
+new Thread(){run(){...}}.start();
+
+//实现Runnable接口
+class YYY implement Runnable{run(){...}}
+    new Thread(new YYY(), "").start();
+==>或者匿名内部类
+new Thread(new Runnable(){run(){...}).start();
+    
+---------------------
+并发线程安全 ：  
+同步代码块  synchronized(lock) {...}
+
+--> 主程序
+		Apple apple = new Apple();
+		new Thread(apple, "小A").start();
+		new Thread(apple, "小B").start();
+		new Thread(apple, "小C").start();
+		
+-->apple的同步代码块写法		
+	public void run() { // 同步代码块，synchronized(同一个资源对象)
+		for (int i = 1; i <= 50; i++) {
+			synchronized (this) { // synchronized不能修饰到for之前，否则代码全被一个线程执行完。
+				if (num > 0) {
+					System.out.println(Thread.currentThread().getName() + " Eat apple " + num--);
+					try {
+						Thread.sleep(10);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+	}
+
+
+
+-->同步方法写法 //隐含了同步锁 = this
+	public void run() { // 同步方法 如果直接用synchronized修饰run，第一个线程可能就执行完整个方法。
+		for (int i = 1; i <= 50; i++) {
+			doWork();
+		}
+	}
+	//--
+	private synchronized void doWork() {
+		if (num > 0) {
+			System.out.println(Thread.currentThread().getName() + " Eat apple " + num--);
+			try {
+				Thread.sleep(10);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+------------
+缺点：使用了synchronized方法/代码块的性能不高。尽量减小synchronized的作用域
+
+案例：
+1） StringBuilder（推荐 效率高）  和 StringBuffer（所有方法相同，多了synchronized修饰符，效率底）
+
+2） ArrayList 和 Vector（ArrayList的前身，加了synchronized）
+      HashMap 和 Hashtable（HashMap的前身，加了synchronized）
+
+/// 单例模式 - 饿汉模式
+private ArrayUtil() {}
+private static ArrayUtil instance = new ArrayUtil();
+public static ArrayUtil getInstance() {return instance;}
+/// 单例模式 - 懒汉模式
+private ArrayUtil() {}
+private static ArrayUtil instance = null;
+public static ArrayUtil getInstance() {if (instance == null) {instance = new ArrayUtil();}return instance;}
+  ... 以上getInstance方法线程不安全 改为：
+private ArrayUtil() {}
+private static ArrayUtil instance = null;
+public static ArrayUtil getInstance() {
+synchronized(ArrayUtil.class) {
+if (instance == null) {instance = new ArrayUtil();}
+}
+return instance;} //减小synchronized作用域，建议代码块
+  ... 双重检查加锁 java1.4之前没有作用，instance增加volatile关键字，直接操作内存，而不在本线程缓存。但是会屏蔽编译器的优化机制，运行效率不高。
+  private ArrayUtil() {}
+private static volatile ArrayUtil instance = null;  //不被缓存，java5之后生效
+public static ArrayUtil getInstance() {
+if (instance == null) {
+	synchronized(ArrayUtil.class) {
+	if (instance == null) {instance = new ArrayUtil();}
+	}
+}
+return instance;} //减小synchronized作用域，建议代码块
+/////////////鉴于以上原因，推荐使用饿汉形式。。。。。
+
+
+-->同步锁
+Lock机制具有同步代码块的所有功能，而且体现面向对象。
+private final Lock lock = new ReentrantLock(); // 创建锁对象
+run方法同同步方法，调用doWork()方法
+	private void doWork() {
+		lock.lock();// 加锁 
+		try {
+			if (num > 0) {
+				System.out.println(Thread.currentThread().getName() + " Eat apple " + num--);
+				Thread.sleep(10);
+			}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} finally {
+			lock.unlock();// 释放锁
+		}
+	}
+	
+	
+--------------生产者/消费者 案例
+public class SharedObj {
+	private String name = "";
+	private String general = "";
+	private boolean isEmpty = true;
+	public synchronized void push(String name, String general) {
+		try {
+			if (!isEmpty) {
+				this.wait();
+			}
+			this.name = name;
+			this.general = general;
+			Thread.sleep(10);
+			this.isEmpty = false;
+			this.notify();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	public synchronized void pop() {
+		try {
+			if (isEmpty) {
+				this.wait();
+			}
+			Thread.sleep(10);
+			System.out.println(this.name + "-" + this.general);
+			this.isEmpty = true;
+			this.notify();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+-----使用同步锁的方法 java5中提供lock机制的通信控制
+	private String name = "";
+	private String general = "";
+	private boolean isEmpty = true;
+	private ReentrantLock lock = new ReentrantLock();
+	private Condition con = lock.newCondition();
+	public void push(String name, String general) {
+		lock.lock();
+		try {
+			while (!isEmpty) {
+				con.await();
+			}
+			this.name = name;
+			this.general = general;
+			Thread.sleep(10);
+			con.signalAll();
+			isEmpty = false;
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} finally {
+			lock.unlock();
+		}
+	}
+	public void pop() {
+		lock.lock();
+		try {
+			while (isEmpty) {
+				con.await();
+			}
+			Thread.sleep(10);
+			System.out.println(this.name + "-" + this.general);
+			isEmpty = true;
+			con.signalAll();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} finally {
+			lock.unlock();
+		}
+	}
+
+------------
+
+
+
