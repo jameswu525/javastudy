@@ -115,3 +115,29 @@ AutoSecurity
 	设计电路板、连接硬件、编写单片机程序（汇编语言）。
 		http://www.openedv.com/posts/list/47657.htm
 ==============================================================
+
+Java 异常
+Throwable - Error
+	  - Exception - Checked Exception
+		      - RuntimeException   - NotChecked Exception
+注： 1 Error 不能由程序处理
+     2 继承RuntimeException 程序可处理可不处理，编译器不做强制  如NullPointException、OutofboundException
+     3 其他Exception必须由程序处理，属于强制处理。  如IOException、FileNotFoundException
+	CheckedException如果不在程序内处理，必须在方法名后Throws抛出
+
+Finally是最终必须运行的代码，一般是资源关闭类的处理，前提是catch中不做System.exit();
+在Try中return语句先预处理，在此之前必须先处理finally语句后再处理try，注意：如果finally中对try return的变量进行处理，则try中return值保持不变。
+如果finally中return则try中return会被忽略；
+
+Java7之后，在finally中的关闭资源操作可以直接省略，使用
+try (Stream file = new FileStream("");) { //注：()中的代码，new出的资源必须实现Closeable接口，java内核中的资源类均符合；
+    ...
+} catch {
+    ...
+}
+
+
+==============================================================
+
+
+
