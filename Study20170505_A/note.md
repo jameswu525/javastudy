@@ -142,7 +142,7 @@ try (Stream file = new FileStream("");) { //注：()中的代码，new出的资�
 并行：两个以上事件在同一时刻点发生；  （多核，同时点执行多个）
 并发：两个以上事件在同一时间段内发生；（单核只能并发，不能并行）
 
-两种启动多线程的方法：
+两种启动多进程的方法：
 		Runtime rt = Runtime.getRuntime();
 		rt.exec("Notepad");  // Runtime
 		ProcessBuilder pb = new ProcessBuilder("Notepad");
@@ -337,7 +337,10 @@ public class SharedObj {
 		}
 	}
 
-------------
+------------2017/5/16
+死锁 ： 避免方法为 让每个线程按照一样的顺序访问资源A、B、C
+
+
 
 
 
