@@ -340,6 +340,28 @@ public class SharedObj {
 ------------2017/5/16
 死锁 ： 避免方法为 让每个线程按照一样的顺序访问资源A、B、C
 
+线程的6个状态Thread.state(New, Runnable, wait, wait time, block, Stop)
+
+Thread.sleep(n); // 释放CPU，但是不释放资源锁。
+
+Thread.join(); //将现有线程与所在线程合并，待另一线程完成后再执行当前线程。
+
+前台线程：默认前台线程，可以通过Thread.setDemon(true)设置为后台线程，必须在start之前设置。
+后台线程：守护线程，当主线程结束后，后台线程也就结束。
+
+线程优先级：
+MAX_PRIORITY = 10
+MIN_PRIORITY = 1
+NORM_PRIORITY = 5
+int getPriority 返回优先级， void setPriority(*) 更改优先级，子线程与主线程默认相同 
+
+--------------
+线程礼让  yield()   ---- 一般不用
+通知JVM自己可以礼让出CPU，不一定会让出CPU， 状态转变为就绪状态。
+
+了解线程组 ThreadGroup
+
+
 
 
 
