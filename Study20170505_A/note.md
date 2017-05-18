@@ -399,10 +399,52 @@ NIO  new IO Java4开始提出，主要用于服务器提高性能，我们代码
   NIO提供通道和缓存
 注：Java7中提出了更新的IO， NIO2.0 提供异步IO   --> Files工具类
 
+================================================
+网络
+TCP 服务端 ServerSocket,  客户端 Socket   ServerSocket.accept
+UDP 发送端/接收端DatagramSocket
 
+-----------------------------------------------------
+// 1
+Class<Date> clz1 = Date.class;
+// 2
+Date date = new Date();
+Class<?> clz2 = date.getClass();
+// 3 推荐使用的！！！
+Class<?> clz3 = Class.forName("java.util.Date");
+--通过反射可以绕过单例模式，但在单例中增加构造器判断则可以阻止该漏洞。-------------
+			Class<?> clz4 = Class.forName("org.jimmy.reflect.PrivateClass");
+			for (Constructor<?> c : clz4.getDeclaredConstructors()) {
+				c.setAccessible(true); // AccessibleObject
+				PrivateClass pvC = (PrivateClass) c.newInstance();
+				System.out.println(pvC.getClass().hashCode());    // 通过 throw new CannotNewSingleInstanceException("不能多次生成单例实例。");  禁止反射
+			}
+--
+静态引入
+import static java.lang.Math.PI
+System.out.println(PI);
 
+资源文件导入：
+ClassLoader loader = Thread.getCurrentThread.getClassLoader();
+loader.load("db.properties");
 
+======Java8 的Lambda表达式
+Arrays.sort(us, new Comparetor<User>() {
+ public int(User u1, User u2) {
+ return Integer.compare(u1.score, u2.score);
+ }
+ });
+ ==>
+ Arrays.sort(us, (User u1, User u2) -> {
+ return Integer.compare(u1.score, u2.score);
+ });
+==>
+ Arrays.sort(us, (User u1, User u2) -> Integer.compare(u1.score, u2.score) );
+==>
+ Arrays.sort(us, (u1, u2) -> Integer.compare(u1.score, u2.score) );
 
-
-
-
+=----------接口中的默认方法
+public interface IXXX {
+void run();
+default void speak(){System.out.println("");}
+}
