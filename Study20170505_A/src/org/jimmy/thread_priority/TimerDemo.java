@@ -1,4 +1,4 @@
-package ort.jimmy.thread_priority;
+package org.jimmy.thread_priority;
 
 import java.util.Timer;
 import java.util.TimerTask;

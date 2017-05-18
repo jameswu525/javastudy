@@ -1,4 +1,4 @@
-package ort.jimmy.thread_priority;
+package org.jimmy.thread_priority;
 
 class Priority extends Thread {
 	public Priority (String name) {

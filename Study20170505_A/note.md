@@ -361,6 +361,46 @@ int getPriority 返回优先级， void setPriority(*) 更改优先级，子线�
 
 了解线程组 ThreadGroup
 
+------------------------------------------
+集合操作的工具类
+Arrays     Collections
+toArrays  
+List<String> list = Arrays. asList("", ""); // 固定长度的list，不能增加删除
+
+Collections
+空集： EMPTYLIST, EMPTYMAP, EMTPYSET  --> new ArrayList // java7之后返回空集
+
+
+
+
+
+
+---泛型类
+public class X<T> {
+}
+---泛型方法
+public static <T> List<T> asList(T... a) {}
+==> public static <T> List<T> asList(T[] a) {}
+
+
+==================================================
+
+序列化  implements Serializable
+static 和 transient 修饰的字段不会被序列化。<例如密码，字节流等不该被序列化>
+序列化版本号 serialVersionUUID，Java通过该字段判断是否字节码相同，否则报错。
+  在需要序列化的类中提供一个固定的序列化UUID，Java判断就会相同。
+  ================
+properties文件加载。   Properties类
+p = new Properties().load(new FileInputStream(""));
+p.getProperties("");
+
+RandomAccessFile 任意位置读写  用于断点/多线程下载文件。
+NIO  new IO Java4开始提出，主要用于服务器提高性能，我们代码依然用传统IO。
+  NIO提供通道和缓存
+注：Java7中提出了更新的IO， NIO2.0 提供异步IO   --> Files工具类
+
+
+
 
 
 
