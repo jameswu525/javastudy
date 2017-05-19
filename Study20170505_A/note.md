@@ -399,6 +399,23 @@ NIO  new IO Java4开始提出，主要用于服务器提高性能，我们代码
   NIO提供通道和缓存
 注：Java7中提出了更新的IO， NIO2.0 提供异步IO   --> Files工具类
 
+----------------------------------------
+InputStream -- OutputStream         四大基流
+Reader -- Writer
+----------------------------------------
+ File RandomAccessFile  Files
+---------------------------------
+文件流： FileInputStream/FileOutputStream  FileReader/FileWriter
+缓冲流： BufferedInputStream/BufferedOutputStream  BufferedReader/BufferedWriter
+转换流（字节流转换为字符流）： InputStreamReader/OutputStreamWriter
+内存流（临时存储）： ByteArrayInputStream/ByteArrayOutputStream/CharArrayReader/CharArrayWriter/StringReader/StringWriter
+顺序流（合并流）： SequenceInputStream  
+对象流（序列化/反序列化）： ObjectInputStream/ObjectOutputStream
+打印流： PrintStream/PrintWriter
+数据流： DataInputStream/DataOutputStream
+管道流（线程通信）： PipedInputStream/PipedOutputStream/PipedReader/PipedWriter 
+
+
 ================================================
 网络
 TCP 服务端 ServerSocket,  客户端 Socket   ServerSocket.accept
