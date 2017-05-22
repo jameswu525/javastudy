@@ -8,20 +8,18 @@ import java.net.Socket;
 import java.util.Date;
 import java.util.Scanner;
 
-public class ServletAgent implements Runnable {
-
+public class UserServlet implements IServlet {
 	private Socket client = null;
-	private StringBuilder strContent = null;
 
-	public ServletAgent(Socket client, StringBuilder strContent) {
-		this.client = client;
-		this.strContent = strContent;
+	public void service() {
+		System.out.println(this.getClass().getName());
 	}
 
+	@Override
 	public void run() {
 
 		try (PrintStream out = new PrintStream(client.getOutputStream());
-				Scanner sc = new Scanner(new FileInputStream(new File("index.html")));) {
+				Scanner sc = new Scanner(new FileInputStream(new File("user.html")));) {
 			out.println("HTTP/1.1 200 OK");
 			out.println("Date:" + new Date().toString());
 			out.println("Content-Type: text/html; charset=UTF-8");
@@ -29,9 +27,6 @@ public class ServletAgent implements Runnable {
 			while (sc.hasNextLine()) {
 				out.print(sc.nextLine());
 			}
-			out.println(Thread.currentThread().getName() + "<h3>收到如下请求内容：</h3>");
-			out.println(strContent.toString());
-			out.println();
 			out.print("</body> </html>");
 			out.println();
 			out.flush();
@@ -39,6 +34,11 @@ public class ServletAgent implements Runnable {
 			e.printStackTrace();
 		}
 		System.out.println(Thread.currentThread().getName() + " Finished... ...");
+	}
+
+	@Override
+	public void setClient(Socket client) {
+		this.client = client;
 	}
 
 }

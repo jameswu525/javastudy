@@ -465,3 +465,38 @@ public interface IXXX {
 void run();
 default void speak(){System.out.println("");}
 }
+
+
+==========================
+XML  DOM
+http://www.cnblogs.com/McCa/p/5938736.html
+什么是XML？
+　　XML是指可扩展标记语言(eXtensible Markup Language)，它是一种标记语言，很类似HTML。它被设计的宗旨是传输数据，而非显示数据。 XML标签没有被预定义，需要用户自行定义标签。 XML技术是W3C组织(World Wide Web Consortium万维网联盟)发布的，目前遵循的是W3C组织于2000年发布的XML1.0规范。 XML被广泛认为是继Java之后在Internet上最激动人心的新技术。
+XML语法规则总结
+　　所有 XML 元素都须有关闭标签
+　　XML 标签对大小写敏感 XML
+　　必须正确地嵌套顺序
+　　XML 文档必须有根元素(只有一个)
+　　XML 的属性值须加引号
+　　特殊字符必须转义 --- CDATA
+　　XML 中的空格、回车换行会解析时被保留
+XML约束之DTD约束     DTD(Document Type Definition)，全称为文档类型定义
+XML约束之Schema XML     Schema 也是一种用于定义和描述 XML 文档结构与内容的模式语言，其出现是为了克服 DTD 的局限性
+
+XML解析方式分为两种：
+　　DOM：Document Object Model，文档对象模型。这种方式是W3C推荐的处理XML的一种方式。
+　　SAX：Simple API for XML。这种方式不是官方标准，属于开源社区XML-DEV，几乎所有的XML解析器都支持它。
+
+　　XML解析开发包 :
+　　JAXP：是SUN公司推出的解析标准实现。
+　　Dom4J：是开源组织推出的解析开发包。(牛，大家都在用，包括SUN公司的一些技术的实现都在用) J
+　　Dom：是开源组织推出的解析开发包。　
+
+　　JAXP:
+　　JAXP:(Java API for XML Processing)开发包是JavaSE的一部分，它由以下几个包及其子包组成：
+　　　　org.w3c.dom:提供DOM方式解析XML的标准接口
+　　　　org.xml.sax:提供SAX方式解析XML的标准接口
+　　　　javax.xml:提供了解析XML文档的类
+　　javax.xml.parsers包中，定义了几个工厂类。我们可以通过调用这些工厂类，得到对XML文档进行解析的DOM和SAX解析器对象。 　　　　　　　　　　　　  　　DocumentBuilderFactory
+　　　  SAXParserFactory
+

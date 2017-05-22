@@ -12,7 +12,11 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Scanner;
+
+import org.jimmy.util.CompileXML;
+import org.jimmy.util.ServletElement;
 
 public class Server extends Frame {
 
@@ -24,6 +28,7 @@ public class Server extends Frame {
 	private TextField text = new TextField();
 	public boolean accept = true;
 	private static Scanner socketIn;
+	public HashMap<String, ServletElement> servlets = null;
 
 	public Server(String title) {
 		super(title);
@@ -31,6 +36,7 @@ public class Server extends Frame {
 
 	public static void main(String[] args) throws IOException {
 		Server panel = new Server("http socket");
+		panel.servlets = new CompileXML("web.xml").getServletsMap();
 		panel.startup();
 		int port = 10086;
 		HttpSocket http = null;
@@ -57,25 +63,37 @@ public class Server extends Frame {
 				StringBuilder acceptContent = new StringBuilder();
 				boolean isFavicon = false;
 				boolean isFirst = true;
-				boolean isEnd = false;
-				while (!isEnd && socketIn.hasNextLine()) {
+				String path = "";
+				while (socketIn.hasNextLine()) {
 					head = socketIn.nextLine();
+					if ("".equals(head)) {
+						break;
+					}
 					acceptContent.append(head);
 					acceptContent.append("<br/>");
 					if (isFirst) {
-						isFavicon = "/favicon.ico".equals(head.substring(head.indexOf("/"), head.indexOf(" HTTP/")));
+						path = head.substring(head.indexOf("/"), head.indexOf(" HTTP/"));
+						isFavicon = "/favicon.ico".equals(path);
 						isFirst = false;
-					}
-					if ("".equals(head)) {
-						isEnd = true;
 					}
 				}
 				// socketIn.close();
 				if (!isFavicon) {
 					System.out.println(
-							new Date().toLocaleString() + " --> some one arrived : " + client.getInetAddress());
-					new Thread(new ServletAgent(client, acceptContent), "Thread " + String.valueOf(loop++)).start();
+							new Date().toLocaleString() + path + " --> some one arrived : " + client.getInetAddress());
+					String route = path.substring(path.indexOf("/"), path.length());
+					System.out.println(route);
+					ServletElement servletEle = panel.servlets.get(route);
+					if (servletEle != null && servletEle.getServletClz() != null) {
+						IServlet servlet = servletEle.getServletClz();
+						servlet.setClient(client);
+						new Thread(servlet).start();
+					} else {
+						new Thread(new ServletAgent(client, acceptContent), "Thread " + String.valueOf(loop++)).start();
+					}
 				}
+			} else {
+				new Thread(new ServletNullAgent(client)).start();
 			}
 		}
 		http.close();
