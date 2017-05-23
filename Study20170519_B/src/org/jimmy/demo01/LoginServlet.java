@@ -35,6 +35,8 @@ public class LoginServlet extends HttpServlet {
 			response.sendRedirect("register.html");
 		} else if ("include".equals(request.getParameter("username"))) {
 			// 请求包含
+			
+			response.getWriter().append("<meta charset=\"UTF-8\">");
 			response.getWriter().append("<h1>重新注册</h1>");
 			request.getRequestDispatcher("hello").include(request, response);
 		} else if ("forward".equals(request.getParameter("username"))) {
