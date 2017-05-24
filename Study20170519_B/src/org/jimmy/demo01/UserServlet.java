@@ -19,6 +19,6 @@ public class UserServlet extends HttpServlet{
 //		PrintWriter out = resp.getWriter();
 //		out.print("Hello Servlet!!!");
 //		out.close();
-		resp.sendRedirect("index.html");
+		resp.sendRedirect("../register.html");
 	}
 }
