@@ -5,6 +5,21 @@ import java.util.Date;
 
 public class ClazzInstanceDemo {
 	public static void main(String[] args) throws ClassNotFoundException, InstantiationException {
+		System.out.println(int.class);	// int
+		System.out.println(boolean.class);	// boolean
+		System.out.println(void.class);	// void
+		System.out.println(Integer.TYPE);	// int  包装类对应的基本数据类型的class实例
+		System.out.println(Integer.class);   //class java.lang.Integer
+		System.out.println(int[][].class);   //class [[I
+		System.out.println(boolean[][].class);   //class [[Z
+		System.out.println(Integer[].class);   //class [Ljava.lang.Integer;
+		System.out.println(Integer[][].class);   //class [[Ljava.lang.Integer;
+		System.out.println(String[][].class);   //class [[Ljava.lang.String;
+		System.out.println(int[][].class);   //class java.lang.Integer
+		
+		System.out.println(int.class == Integer.class);   // false
+		
+		System.out.println("==========================");
 		// 1
 		Class<Date> clz1 = Date.class;
 		// 2
