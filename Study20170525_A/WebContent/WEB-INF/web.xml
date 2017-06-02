@@ -2,6 +2,71 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
   <display-name>Study20170525_A</display-name>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
+    <welcome-file>login.jsp</welcome-file>
   </welcome-file-list>
+  <context-param>
+    <param-name>version</param-name>
+    <param-value>1.0</param-value>
+  </context-param>
+  <servlet>
+    <servlet-name>hello</servlet-name>
+    <servlet-class>org.jimmy.javaweb.HelloServlet</servlet-class>
+    <init-param>
+      <param-name>name</param-name>
+      <param-value>Jimmy</param-value>
+    </init-param>
+    <init-param>
+      <param-name>age</param-name>
+      <param-value>18</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>hello</servlet-name>
+    <url-pattern>/hello</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>org.jimmy.javaweb.Loginservlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/login.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>HabitServlet</servlet-name>
+    <servlet-class>org.jimmy.javaweb.HabitServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HabitServlet</servlet-name>
+    <url-pattern>/habit.do</url-pattern>
+  </servlet-mapping>
+    
+  <servlet>
+    <servlet-name>testServlet</servlet-name>
+    <jsp-file>/test.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>testServlet</servlet-name>
+    <url-pattern>/test.do</url-pattern>
+  </servlet-mapping>
+  
+ <servlet>
+    <servlet-name>loginServlet2</servlet-name>
+    <jsp-file>/login.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>loginServlet2</servlet-name>
+    <url-pattern>/login2.do</url-pattern>
+  </servlet-mapping>
+  
+  <filter>
+    <filter-name>globleCheck</filter-name>
+    <filter-class>org.jimmy.javaweb.CheckSession</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>globleCheck</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
 </web-app>
