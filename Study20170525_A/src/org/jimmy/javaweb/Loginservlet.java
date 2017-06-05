@@ -1,6 +1,11 @@
 package org.jimmy.javaweb;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
@@ -32,7 +37,7 @@ public class Loginservlet implements Servlet {
 		
 		System.out.println(name + " : " +  password);
 		
-		if ("1".equals(name)) {
+		if (validateLoginInfor()) {
 			System.out.println("成功");
 			HttpServletRequest httpReq = (HttpServletRequest) req;
 			httpReq.getSession().setAttribute("isLogin", true);
@@ -41,6 +46,41 @@ public class Loginservlet implements Servlet {
 			System.out.println("失败");
 			req.getRequestDispatcher("login.jsp").forward(req, res);
 		}
+	}
+	
+	private boolean validateLoginInfor() {
+		boolean result = false;
+		Connection conn = null;
+		Statement state = null;
+		String url = "jdbc:postgresql://localhost:5432/wx20170324";
+		String username = "wx";
+		String password = "kerry2016!";
+		System.out.println(url + ":" + username);
+		try {
+			Class.forName("org.postgresql.Driver");
+			conn = DriverManager.getConnection(url, username, password);
+			state = conn.createStatement();
+			
+			ResultSet res = state.executeQuery("select current_date");
+			if (res.next()) {
+				System.out.println(res.getString(1));
+				result = true;
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				state.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
+		return result;
 	}
 
 	@Override
