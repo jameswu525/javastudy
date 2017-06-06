@@ -127,3 +127,20 @@ TYPE
  
  ----
  
+ 
+ 2017/6/6
+ 
+ 至此基本了解：
+ 1， JDK基础以及反射，线程，泛型，动态代理，注解，异常，接口，网络Socket，IO
+ 2， Java Servlet
+ 3， JDBC
+ 4， JUnit
+ 5， Git
+ 
+ 需要继续了解：
+ 1， Maven
+ 2， Java Web （Servlet/JSP）
+ 3， Struts、Spring、MyBatis
+ 4， JQuery，Ajax，Bootstrap
+ 
+ 
