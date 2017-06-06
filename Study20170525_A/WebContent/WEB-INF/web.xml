@@ -67,6 +67,17 @@
   </filter>
   <filter-mapping>
     <filter-name>globleCheck</filter-name>
-    <url-pattern>/*</url-pattern>
+    <url-pattern>*.do</url-pattern>
   </filter-mapping>
+  
+  
+  <servlet>
+    <servlet-name>qrcheckServlet</servlet-name>
+    <servlet-class>org.jimmy.javaweb.QRCodingCheckServlet</servlet-class><!-- 接受二维码验证 -->
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>qrcheckServlet</servlet-name>
+    <url-pattern>/check</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

@@ -1,8 +1,14 @@
 package org.jimmy.junit;
 
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.Test;
 
 public class DriverTest {
@@ -25,6 +31,17 @@ public class DriverTest {
 		Connection conn = DriverManager.getConnection(jdbcUrl, user, password);
 //		Connection conn = DriverManager.getConnection(jdbcUrl2, user2, password2);
 		System.out.println(conn);
+		assertTrue("not true", 4 < 5);
+		assertThat(8, is(8));
+	}
+	
+	@BeforeClass
+	@Before
+	@Test
+	@After
+	@AfterClass
+	public void testCheck() {
+		
 	}
 
 }
