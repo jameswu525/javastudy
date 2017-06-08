@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<c3p0-config>
+
+	<named-config name="helloc3p0">
+		<property name="minPoolsize">10</property>
+		<property name="acquireIncrement">5</property>
+		<property name="driverClass">org.postgresql.Driver</property>
+		<property name="jdbcUrl">jdbc:postgresql://localhost:5432/wx20170324	</property>
+		<property name="user">wx</property>
+		<property name="password">kerry2016!</property>
+	</named-config>
+
+</c3p0-config>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<welcome-file-list>
+		<welcome-file>login.html</welcome-file>
+	</welcome-file-list>
+	
+	<context-param>
+		<param-name>user-name</param-name>
+		<param-value>Jimmy</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>password</param-name>
+		<param-value>admin123</param-value>
+	</context-param>
+	
+	<servlet>
+		<servlet-name>login.do</servlet-name>
+		<servlet-class>org.jimmy.service.LoginAction</servlet-class>
+		<init-param>
+			<param-name>welcome</param-name>
+			<param-value>hahahahahh</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>login.do</servlet-name>
+		<url-pattern>/login.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>welcomejsp</servlet-name>
+		<jsp-file>/welcome.jsp</jsp-file>
+		<init-param>
+			<param-name>welcome</param-name>
+			<param-value>hahahahahh</param-value>
+		</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>welcomejsp</servlet-name>
+		<url-pattern>/welcome.j</url-pattern>
+	</servlet-mapping>
+
+</web-app>
