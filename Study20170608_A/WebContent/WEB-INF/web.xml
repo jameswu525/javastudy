@@ -22,7 +22,7 @@
 		<servlet-class>org.jimmy.service.LoginAction</servlet-class>
 		<init-param>
 			<param-name>welcome</param-name>
-			<param-value>hahahahahh</param-value>
+			<param-value>YYYYYYY</param-value>
 		</init-param>
 	</servlet>
 	

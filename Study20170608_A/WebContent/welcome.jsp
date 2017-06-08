@@ -15,7 +15,7 @@
 		System.out.println(page.getClass().getName());
 		System.out.println(session.getValue("JimmyKey"));
 
-		System.out.println(request.getParameterValues("welcome"));
+		System.out.println(config.getInitParameter("welcome"));
 	%></a>
 </body>
 </html>
