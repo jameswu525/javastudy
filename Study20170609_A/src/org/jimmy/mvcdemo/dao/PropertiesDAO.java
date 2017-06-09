@@ -10,7 +10,7 @@ public class PropertiesDAO extends DAO<PropertyEntity> {
 		StringBuilder sb = new StringBuilder();
 		sb.append(" 	update	");
 		sb.append(" 	t_property	set deleted_at = current_date");
-		sb.append(" 	where id = ? ");
+		sb.append(" 	where id = ?  ");
 		String sql = sb.toString();
 		System.out.println(sql);
 		return update(sql, new Object[] { Integer.valueOf(id).intValue() });
