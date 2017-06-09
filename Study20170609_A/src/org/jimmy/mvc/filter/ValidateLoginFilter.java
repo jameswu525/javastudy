@@ -1,4 +1,4 @@
-package org.jimmy.mvc.service;
+package org.jimmy.mvc.filter;
 
 import java.io.IOException;
 import java.util.Date;
@@ -18,12 +18,12 @@ import org.jimmy.mvc.entity.Entity;
  * Servlet Filter implementation class ValidateLoginInfo
  */
 @WebFilter("/ValidateLoginInfo.do")
-public class ValidateLoginInfo implements Filter {
+public class ValidateLoginFilter implements Filter {
 
     /**
      * Default constructor. 
      */
-    public ValidateLoginInfo() {
+    public ValidateLoginFilter() {
         // TODO Auto-generated constructor stub
     }
 
@@ -45,11 +45,14 @@ public class ValidateLoginInfo implements Filter {
 			Entity entity = (Entity)httpReq.getSession().getAttribute("login_infor");
 //			System.out.println(entity);
 			if (entity == null) {
+				System.out.println("no session");
 				httpReq.getRequestDispatcher(httpReq.getServletContext().getInitParameter("home")).forward(request, response);
+			} else {
+				chain.doFilter(request, response);
 			}
+		} else {
+			chain.doFilter(request, response);
 		}
-		
-		chain.doFilter(request, response);
 	}
 
 	/**

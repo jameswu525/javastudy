@@ -1,8 +1,8 @@
-package org.jimmy.mvc.service;
+package org.jimmy.mvc.servlet;
 
 import javax.servlet.http.HttpServlet;
 
-public class Service extends HttpServlet {
+public class BasicServlet extends HttpServlet {
 
 	/**
 	 * 

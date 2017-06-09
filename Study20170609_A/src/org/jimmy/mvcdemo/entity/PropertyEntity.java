@@ -2,7 +2,7 @@ package org.jimmy.mvcdemo.entity;
 
 import org.jimmy.mvc.entity.Entity;
 
-public class PropertiesEntity extends Entity {
+public class PropertyEntity extends Entity<PropertyEntity> {
 	String id;
 	String name;
 	String app_id;
@@ -179,34 +179,16 @@ public class PropertiesEntity extends Entity {
 	String alipay_public;
 	String alipay_product_code;
 
+	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("id = " + id + " _ ");
-		sb.append("name = " + name + " _ ");
-		sb.append("app_id = " + app_id + " _ ");
-		sb.append("telephone = " + telephone + " _ ");
-		sb.append("province = " + province + " _ ");
-		sb.append("city = " + city + " _ ");
-		sb.append("street = " + street + " _ ");
-		sb.append("start_time = " + start_time + " _ ");
-		sb.append("end_time = " + end_time + " _ ");
-		sb.append("zipcode = " + zipcode + " _ ");
-		sb.append("isjde = " + isjde + " _ ");
-		sb.append("active = " + active + " _ ");
-		sb.append("created_at = " + created_at + " _ ");
-		sb.append("updated_at = " + updated_at + " _ ");
-		sb.append("deleted_at = " + deleted_at + " _ ");
-		sb.append("mch_id = " + mch_id + " _ ");
-		sb.append("partner_key = " + partner_key + " _ ");
-		sb.append("bill_sync_day = " + bill_sync_day + " _ ");
-		sb.append("alipay_app_id = " + alipay_app_id + " _ ");
-		sb.append("alipay_cer = " + alipay_cer + " _ ");
-		sb.append("ali_community_id = " + ali_community_id + " _ ");
-		sb.append("out_community_id = " + out_community_id + " _ ");
-		sb.append("alipay_app_public = " + alipay_app_public + " _ ");
-		sb.append("alipay_public = " + alipay_public + " _ ");
-		sb.append("alipay_product_code = " + alipay_product_code + " _ ");
-
-		return sb.toString();
+		return "PropertiesEntity [id=" + id + ", name=" + name + ", app_id=" + app_id + ", telephone=" + telephone
+				+ ", province=" + province + ", city=" + city + ", street=" + street + ", start_time=" + start_time
+				+ ", end_time=" + end_time + ", zipcode=" + zipcode + ", isjde=" + isjde + ", active=" + active
+				+ ", created_at=" + created_at + ", updated_at=" + updated_at + ", deleted_at=" + deleted_at
+				+ ", mch_id=" + mch_id + ", partner_key=" + partner_key + ", bill_sync_day=" + bill_sync_day
+				+ ", alipay_app_id=" + alipay_app_id + ", alipay_cer=" + alipay_cer + ", ali_community_id="
+				+ ali_community_id + ", out_community_id=" + out_community_id + ", alipay_app_public="
+				+ alipay_app_public + ", alipay_public=" + alipay_public + ", alipay_product_code="
+				+ alipay_product_code + "]";
 	}
 }

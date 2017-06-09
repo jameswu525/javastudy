@@ -7,9 +7,9 @@
 <title>Menu</title>
 </head>
 <body>
-	<h4><a href="mainpage.do">Menu</a></h4>
+	<h4><a href="#">Menu</a></h4>
 	<ul>
-		<li><a href="function01.do">功能1</a></li>
+		<li><a href="property.do">功能1</a></li>
 		<li></li>
 		<li></li>
 		<li></li>

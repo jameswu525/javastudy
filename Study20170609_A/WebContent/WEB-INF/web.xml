@@ -22,7 +22,7 @@
   </context-param>
   <servlet>
     <servlet-name>login.do</servlet-name>
-    <servlet-class>org.jimmy.mvcdemo.service.LoginServlet</servlet-class>
+    <servlet-class>org.jimmy.mvcdemo.servlet.LoginServlet</servlet-class>
     <init-param>
       <param-name>page</param-name>
       <param-value>/page/main.jsp</param-value>
@@ -33,29 +33,39 @@
     <url-pattern>/login.do</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>function01.do</servlet-name>
-    <servlet-class>org.jimmy.mvcdemo.service.Fun01Servlet</servlet-class>
+    <servlet-name>property.do</servlet-name>
+    <servlet-class>org.jimmy.mvcdemo.servlet.PropertyServlet</servlet-class>
     <init-param>
       <param-name>page</param-name>
-      <param-value>/page/function1-1.jsp</param-value>
+      <param-value>/page/property.jsp</param-value>
     </init-param>
   </servlet>
   <servlet-mapping>
-    <servlet-name>function01.do</servlet-name>
-    <url-pattern>/function01.do</url-pattern>
+    <servlet-name>property.do</servlet-name>
+    <url-pattern>/property.do</url-pattern>
   </servlet-mapping>
-  
+ <servlet>
+    <servlet-name>deleteProperties.do</servlet-name>
+    <servlet-class>org.jimmy.mvcdemo.servlet.DeletePropertiesServlet</servlet-class>
+    <init-param>
+      <param-name>page</param-name>
+      <param-value>property.do</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>deleteProperties.do</servlet-name>
+    <url-pattern>/deleteProperties.do</url-pattern>
+  </servlet-mapping>
   <listener>
     <description>ServletContextListener</description>
     <listener-class>org.jimmy.mvc.utils.LoadProperties</listener-class>
   </listener>
-  
   <filter>
-  	<filter-name>validateionLoginInfo</filter-name>
-  	<filter-class>org.jimmy.mvc.service.ValidateLoginInfo</filter-class>
+    <filter-name>validateionLoginInfoFilter</filter-name>
+    <filter-class>org.jimmy.mvc.filter.ValidateLoginFilter</filter-class>
   </filter>
   <filter-mapping>
-  	<filter-name>validateionLoginInfo</filter-name>
-	<url-pattern>/*</url-pattern>
+    <filter-name>validateionLoginInfoFilter</filter-name>
+    <url-pattern>/*</url-pattern>
   </filter-mapping>
 </web-app>

@@ -3,11 +3,20 @@ package org.jimmy.mvcdemo.dao;
 import java.util.List;
 
 import org.jimmy.mvc.dao.DAO;
-import org.jimmy.mvc.utils.DaoUtils;
-import org.jimmy.mvcdemo.entity.PropertiesEntity;
+import org.jimmy.mvcdemo.entity.PropertyEntity;
 
-public class PropertiesDAO extends DAO {
-	public List<PropertiesEntity> getPropertiesList() {
+public class PropertiesDAO extends DAO<PropertyEntity> {
+	public int deleteProperty(String id) {
+		StringBuilder sb = new StringBuilder();
+		sb.append(" 	update	");
+		sb.append(" 	t_property	set deleted_at = current_date");
+		sb.append(" 	where id = ? ");
+		String sql = sb.toString();
+		System.out.println(sql);
+		return update(sql, new Object[] { Integer.valueOf(id).intValue() });
+	}
+
+	public List<PropertyEntity> getPropertiesList(Object ... args) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(" 	select id,	");
 		sb.append(" 	name,	");
@@ -16,28 +25,17 @@ public class PropertiesDAO extends DAO {
 		sb.append(" 	province,	");
 		sb.append(" 	city,	");
 		sb.append(" 	street,	");
-		sb.append(" 	start_time,	");
-		sb.append(" 	end_time,	");
 		sb.append(" 	zipcode,	");
-		sb.append(" 	isjde,	");
-		sb.append(" 	active,	");
-		sb.append(" 	created_at,	");
-		sb.append(" 	updated_at,	");
-		sb.append(" 	deleted_at,	");
-		sb.append(" 	mch_id,	");
-		sb.append(" 	partner_key,	");
-		sb.append(" 	bill_sync_day,	");
-		sb.append(" 	alipay_app_id,	");
-		sb.append(" 	alipay_cer,	");
-		sb.append(" 	ali_community_id,	");
-		sb.append(" 	out_community_id,	");
-		sb.append(" 	alipay_app_public,	");
-		sb.append(" 	alipay_public,	");
-		sb.append(" 	alipay_product_code	");
-		sb.append(" 	from kerry_properties	");
-		sb.append(" 	where id = ? or id = ? or id = ?");
+		sb.append(" 	deleted_at	");
+		sb.append(" 	from t_property	");
+		sb.append(" 	where (1 = 1 ");
+		for (int i = 0; args != null && i < args.length; i++) {
+			sb.append(" or id = ? ");
+		}
+		sb.append(" ) and deleted_at is null ");
 		sb.append(" 	order by id");
 		String sql = sb.toString();
-		return DaoUtils.queryAsList(PropertiesEntity.class, sql, new Object[]{1, 2, 6});
+		System.out.println(sql);
+		return queryList(sql, args);
 	}
 }
