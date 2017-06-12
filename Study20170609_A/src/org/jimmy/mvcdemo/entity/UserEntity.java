@@ -32,6 +32,7 @@ public class UserEntity extends Entity<UserEntity> {
 	}
 
 	public UserEntity() {
+		System.out.println("UserEntity Constructor...");
 		// TODO Auto-generated constructor stub
 	}
 

@@ -212,3 +212,93 @@ session
 每个会话在服务端均创建有一个Session，其中sessionID是唯一识别号，通过response的cookie传回给浏览器。
 浏览器下一次会话时自动带入sessionID，由服务端从中找出是哪个浏览器的会话。
 
+-----
+
+Java Bean
+
+JSP的三个过时的标签：
+<jsp:useBean id="user" class="org.jimmy.mvcdemo.entity.UserEntity" scope="session"></jsp:useBean>
+
+<jsp:setProperty  name="user"  property="id" value="20"/>
+<jsp:getProperty property="id" name="user"/>
+注意： class， 不用type否则编译出的JSPservlet在user==null时会抛出异常。
+@@@--> 相当于
+<%
+	xyz = scope.getAttribute("id");
+	if (xyz == null) {
+		xyz = Class.forName("xx.x.x.xyz").newInstance();
+		scope.setAttribute("id", xyz);
+	}
+%>
+
+----
+EL 语法
+Expression Language
+<%
+request.setAttribute("NNN", "YES");   // request放置参数
+%>
+<jsp:useBean id="user" class="org.jimmy.mvcdemo.entity.UserEntity" scope="session" />   // 放置Session参数，使用bean并设置属性值
+<jsp:setProperty name="user" property="id" value="30"/>
+	<form action="EL.jsp" method="post">
+	username:<br>
+	request : <input type="text" name="username" value="<%=request.getParameter("username") %>"><br>
+	request : <input type="text" name="username2" value="<%=request.getParameter("username") == null ? "":request.getParameter("username") %>"><br> // 使用java片段的方式
+	EL - param: <input type="text" name="username3" value="${param.username}"><br>       // 使用EL的方式，不需要判断是否为null的情况
+	EL - request: <input type="text" name="username4" value="${requestScope.NNN}"><br>   // requestScope中获取参数
+	EL - session: <input type="text" name="username5" value="${sessionScope.user.id}"><br>    // session中获取参数的属性
+	EL - session: <input type="text" name="username51" value="${sessionScope['user'].id}"><br>  // 如果其中的参数名称有特殊字符，需要使用['xxx.xx.x']的方式取值
+	EL - page>request>session>application <input type="text" name="username6" value="${MMM}"><br>   // EL可以不带Scope隐含参数，则取值从最小范围自动匹配找
+	EL - cacl <input type="text" name="username7" value="${param.username +8}"><br>   // EL 自动转换类型，计算结果
+	java - 不计算 <input type="text" name="username71" value='<%= request.getParameter("username") + 8%>'><br>  // 字符串拼接
+	<input type="submit" value="Submit">
+	</form>
+
+---- 
+隐含对象：
+--范围相关
+applicationScope
+sessionScope
+requestScope
+pageScope
+
+--请求参数
+param
+paramValues   一组值，数组格式
+   注：可以无限制的使用无参get方法的属性值
+   
+--其他
+${initParam.xxx}
+header["Accept-Language"]
+cookie   ${cookie.JSESSIONID}
+pageContext  
+	Path = ${pageContext.request.contextPath}
+	sessinoid = ${pageContext.session.id}
+	// 所有该对象中无参get方法的属性都可以读取。
+	
+----
+计算  + - * / %
+
+----
+关系运算符
+${param.score >= 60 ? "及格" : "不及格"}
+... ... 
+empty 可以作用于一个集合，若该集合不存在或没有元素，结果返回true
+${empty list}
+
+EL 函数，配合JSTL使用
+---------------
+JSTL 降低JSP开发的复杂度，在jsp中不使用java片段。
+顶层接口javax.servlet.jsp.tagext
+  -- SimpleTag
+  -- JSPTag
+创建一个实现SimpleTag的类，在web-inf下创建mytag.tld文件，用来描述标签
+<short-name> ... </short-name>
+<uri> .......</uri>
+<class>........  指定实现类
+Class中实现 doTag等方法
+
+JSP
+引入标签库<tablib uri="..." prefix="xx" >
+<xx:shortName/>   // 即引用标签
+
+

@@ -9,8 +9,11 @@
 <body>
 	<h4><a href="#">Menu</a></h4>
 	<ul>
-		<li><a href="property.do">功能1</a></li>
+		<li><a href="property.do">功能1</a>显示数据库查询结果，并删除行</li>
 		<li></li>
+		<li><a href="page/jspbean.jsp">功能2</a>Bean 标签</li>
+		<li></li>
+		<li><a href="page/EL.jsp">功能3</a>EL语法</li>
 		<li></li>
 		<li></li>
 		<li></li>
