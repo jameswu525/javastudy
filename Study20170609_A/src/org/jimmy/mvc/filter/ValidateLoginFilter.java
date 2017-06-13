@@ -43,7 +43,7 @@ public class ValidateLoginFilter implements Filter {
 		System.out.println(new Date().toLocaleString() + " ==> " + httpReq.getLocalAddr() + " // " + url);
 		if (!"/login.do".equals(url) && !"/login.jsp".equals(url)) {
 			Entity entity = (Entity)httpReq.getSession().getAttribute("login_infor");
-//			System.out.println(entity);
+			System.out.println(entity);
 			if (entity == null) {
 				System.out.println("no session");
 				httpReq.getRequestDispatcher(httpReq.getServletContext().getInitParameter("home")).forward(request, response);

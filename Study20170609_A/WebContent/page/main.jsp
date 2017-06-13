@@ -14,12 +14,21 @@
 </style> 
 </head>
 <body>
-	<div id="header">Welcome <%= request.getParameter("user") %></div>
+	<div id="header">Welcome ${sessionScope.login_infor.username } </div>
 	<div id="main">
 		<div id="left"><jsp:include page="/page/menu.jsp"></jsp:include></div> 
 		<div id="right">
-			<jsp:include page="/page/index.jsp"></jsp:include>
-		</div> 
+			<%
+				if (request.getParameter("page") == null) {
+					%>
+					<h2>Welcome </h2>
+					<%
+				} else {  %>
+				<jsp:include page="${param.page}"></jsp:include>
+				<%
+				}
+			%>
+		</div>
 	</div>
 </body>
 </html>

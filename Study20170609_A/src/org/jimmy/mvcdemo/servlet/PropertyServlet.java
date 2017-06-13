@@ -22,9 +22,10 @@ public class PropertyServlet extends BasicServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 检索properties表，将其显示在界面中。
 		List<PropertyEntity> list = new PropertyService().getAllProperties().getList();
-		
+		//${pageContext.request.contextPath}/page/main.jsp?page=
+		System.out.println("/page/main.jsp?page=property.jsp");
 		request.setAttribute("list",  list);
-		request.getRequestDispatcher(this.getServletConfig().getInitParameter("page")).forward(request, response);
+		request.getRequestDispatcher("/page/main.jsp?page=property.jsp").forward(request, response);
 	}
 
 	/**

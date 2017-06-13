@@ -20,5 +20,7 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-logging-1.2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-pool2-2.4.2.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/postgresql-42.1.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jstl.jar" sourcepath="E:/workspace/resources/jakarta-taglibs-standard-1.1.2-src"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/standard.jar" sourcepath="E:/workspace/resources/jakarta-taglibs-standard-1.1.2-src"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

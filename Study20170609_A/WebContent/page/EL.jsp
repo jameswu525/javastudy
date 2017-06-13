@@ -8,6 +8,7 @@
 </head>
 <body>
 <%
+System.out.println("----------------~~~~~~~~~~~~~~~~");
 request.setAttribute("NNN", "YES");
 request.setAttribute("MMM", "12");
 session.setAttribute("MMM", "13");
@@ -15,7 +16,7 @@ application.setAttribute("MMM", "14");
 %>
 <jsp:useBean id="user" class="org.jimmy.mvcdemo.entity.UserEntity" scope="session" />
 <jsp:setProperty name="user" property="id" value="30"/>
-	<form action="EL.jsp" method="post">
+	<form action="${pageContext.request.contextPath}/page/main.jsp?page=EL.jsp" method="post">
 	username:<br>
 	request : <input type="text" name="username" value="<%=request.getParameter("username") %>"><br>
 	request : <input type="text" name="username2" value="<%=request.getParameter("username") == null ? "":request.getParameter("username") %>"><br>

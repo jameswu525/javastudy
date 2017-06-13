@@ -12,6 +12,14 @@
     <error-code>500</error-code>
     <location>/WEB-INF/page/error500.html</location>
   </error-page>
+  <!-- 
+  <jsp-config>
+  	<taglib>
+  		<taglib-uri>http://www.kerryprops.com/org/jimmy/taglib</taglib-uri>
+  		<taglib-location>/WEB-INF/tags/Mytag.tld</taglib-location>
+  	</taglib>
+  </jsp-config>
+   -->
   <context-param>
     <param-name>home</param-name>
     <param-value>/login.jsp</param-value>
