@@ -7,7 +7,8 @@ http://jquery.com/download/
 跟着龙哥学 JavaWeb
 http://edu.csdn.net/course/detail/1830/28143?auto_start=1
 ----
-TODO ： 第六章：在线购物车设计和令牌机制以及验证码使用
+TODO ： 第六章：在线购物车设计和令牌机制以及验证码使用  2017/6/16
+TODO:  JavaWeb开发之使用Apache的FileUpload组件完成基本上传操作  2017/6/17
 ----
 
 
