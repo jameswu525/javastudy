@@ -16,7 +16,7 @@
             <result>/HelloWorld.jsp</result>
         </action>
         <action name="student" class="org.jimmy.step01.GetStudentName">
-        	<result name="success">/userConfirm.jsp</result>
+        	<result name="success">/userConfirm.jsp?msg=${mString}</result>
         	<result name="error">/default.html</result>
         </action>
     </package>

@@ -1,5 +1,4 @@
 $(document).ready(function(){
-	$("#btnSubmit").click(function(){checkValidate();});
 });
 
 function checkValidate() {
@@ -7,10 +6,11 @@ function checkValidate() {
 	var intRegex = /^\+?[1-9][0-9]*$/;
 	if(!!!intRegex.exec(v)) {
 		$("#age").val("");
-		$("#ageMsg").val("ERROR");
+		$("#errorMsg").text("ERROR， 请输入正确的数字");
+		$("#errorMsg").css("color", "red");
 	} else {
-		//alert ("数字");
-		$("#ageMsg").val("");
+		$("#errorMsg").text("");
+		$("#errorMsg").css("color", "green");
 	}
 //	$("#ageMsg").innerText=v + " is error";
 	return false;

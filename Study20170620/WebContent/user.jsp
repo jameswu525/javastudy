@@ -11,14 +11,16 @@
 <title>Work with Student</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
 <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<!--  script type="text/javascript" src="js/require.js"></script>-->
 <script type="text/javascript" src="js/user.js"></script>
 </head>
 <body>
-	<form action="${basepath}s1/student" method="post">
+	<form action="${basepath}s1/student" method="post" id="f">
 		<a>BasePath is  ${basepath}</a>
 		<hr/>
-		UserName : <input name="uname" id="uname"  type="text">
-		Age: <input name="age" id="age" type="text" onchange="checkValidate()"><input id="ageMsg" readonly="readonly">
+		<Span id="errorMsg"></Span><br>
+		UserName : <input name="uname" id="uname"  type="text" required>
+		Age: <input name="age" id="age" type="text" onchange="checkValidate()" required>
 		<input id="btnSubmit" type="submit" name="提交">
 	</form>
 </body>
