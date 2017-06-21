@@ -13,7 +13,7 @@ public class GetStudentName extends ActionSupport{
 	
 	public String execute() throws Exception {
 		System.out.println(uname + ":" +age);
-		mString = uname + ":" +age;
+		mString = uname + ":" +age;    
 		return SUCCESS;
 	}
 
