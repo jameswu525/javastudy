@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head lang="en">
+		<meta charset="UTF-8">
+		<title>index</title>
+	</head>
+	<body>
+		<div id="div">
+			<button id="btn1">注册事件</button><br/>
+
+			<button id="btn2">对象</button>
+
+
+		</div>
+		<div id="result"></div>
+	</body>
+
+	<script type="text/javascript">
+		// var btn1 = document.getElementById("btn1");
+		// btn1.onclick = function() {alert("YES")};
+
+		// function demo() {
+		// 	alert("onclick");
+		// }
+
+		var btn1 = document.getElementById("btn1");
+		var btn2 = document.getElementById("btn2");
+		btn1.addEventListener("click", demo1);
+		btn1.addEventListener("click", demo2);
+		function demo1() {
+			alert("DEMO1");
+		}
+		function demo2(e) {
+			alert("DEMO2" + e.type + "/" + e.target.id);
+		}
+
+
+		btn2.addEventListener("click", demo3);
+
+		function demo3(e) {
+			people = new Object();
+			people.name="Jimmy";
+			people.age="18";
+
+			p = {name: "LY", age:"20"};
+			document.getElementById("result").innerText = people.name + ":" + people.age + "<br/>" + p.name + "_" + p.age;
+		}
+
+	</script>
+</html>
