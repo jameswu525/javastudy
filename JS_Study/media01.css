@@ -1,0 +1,84 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+.heading, .container, .footing {
+	margin: 10px auto;
+}
+
+.heading {
+	height: 100px;
+	background-color: #888888;
+}
+
+.left, .right, .main {
+	background-color: #FFAA00;
+}
+
+.footing {
+	height: 100px;
+	background-color: #888888;
+}
+
+@media screen and (min-width: 960px) {
+	.heading, .container, .footing {
+		width: 960px;
+	}
+	.container {
+		height: 500px;
+	}
+	.left, .main, .right {
+		float: left;
+		height: 500px;
+	}
+	.left, .right {
+		width: 150px;
+	}
+	.main {
+		margin-left: 5px;
+		margin-right: 5px;
+		width: 650px;
+	}
+}
+
+@media screen and (min-width: 600px) and (max-width: 960px) {
+	.heading, .container, .footing {
+		width: 600px;
+	}
+	.container {
+		height: 400px;
+	}
+	.left, .main {
+		float: left;
+		height: 400px;
+	}
+	.right {
+		display: none;
+	}
+	.left {
+		width: 95px;
+	}
+	.main {
+		margin-left: 5px;
+		width: 500px;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.heading, .container, .footing {
+		width: 400px;
+	}
+	.container {
+		height: 400px;
+	}
+	.main {
+		height: 400px;
+	}
+	.left, .right {
+		display: none;
+	}
+	.main {
+		width: 400px;
+	}
+}

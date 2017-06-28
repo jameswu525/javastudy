@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>音频</title>
+	</head>
+	<body>
+		<audio id="audio1" controls="controls" src="raw/1.mp3"> </audio>
+		<button id="pause1">播放/暂停</button><br/>
+		<audio id="audio2" controls="controls" src="raw/ss/01.SPEED STAR.mp3"> </audio>
+		<button id="pause2">播放/暂停</button><br/>
+		
+		<button id="v1">播放/暂停</button>
+		<button id="v2">放大</button>
+		<button id="v3">缩小</button><br/>
+		<video id="vd1" controls="controls" src = "raw/1.mp4" width="300px"></video><br/>
+		<!--  使用source子元素指定多种格式，确保多浏览器均能兼容 -->
+	</body>
+
+	<script type="text/javascript">
+		var a = document.getElementById("audio1");
+		var b = document.getElementById("audio2");
+		var btn1 = document.getElementById("pause1");
+		var btn2 = document.getElementById("pause2");
+		var c = document.getElementById("vd1");
+		var v1 = document.getElementById("v1");
+		var v2 = document.getElementById("v2");
+		var v3 = document.getElementById("v3");
+		
+		btn1.onclick=function() {
+			console.log(a.paused);
+			if (a.paused) {
+				a.play();
+			} else {
+				a.pause();
+			}
+		}
+		btn2.onclick=function() {
+			console.log(b.paused);
+			if (b.paused) {
+				b.play();
+			} else {
+				b.pause();
+			}
+		}
+		v1.onclick=function() {
+			console.log(c.paused);
+			if (c.paused) {
+				c.play();
+			} else {
+				c.pause();
+			}
+		}
+		v2.onclick=function() {
+			c.width = 800;
+			c.height = 800;
+		}
+		v3.onclick=function() {
+			c.width = 300;
+			c.height = 300;
+		}
+		
+
+	</script>
+</html>
