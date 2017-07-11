@@ -27,7 +27,17 @@
 				</p>
 			</div>
 			<div class="col-md-6">
-				<p>request=<%=request.getAttribute("test001")%></p>
+				<p>request=<%=request.getAttribute("test001")%></p><br/>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<p><strong>特殊测试项005</strong>&nap; &nap; &nap; &nap; session=${sessionScope.test001 }</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<p><strong>特殊测试项005</strong>&nap; &nap; &nap; &nap; session=${sessionScope.test002}</p>
 			</div>
 		</div>
 	</div>

@@ -78,7 +78,7 @@
 			</div>
 			<div class="col-md-6">/test03/*/main， * 通配符</div>
 		</div>
-				<div class="row">
+		<div class="row">
 			<div class="col-md-1">
 				5
 			</div>
@@ -87,9 +87,42 @@
 			</div>
 			<div class="col-md-6">@PathVariable参数中获取的val值</div>
 		</div>
-		
-		
-		
+		<div class="row">
+			<div class="col-md-1">
+				6
+			</div>
+			<div class="col-md-5">
+					<a href="test05/sessionAttributes" class="btn btn-large">Session域</a><br/>
+			</div>
+			<div class="col-md-6">将参数存储在Session域中</div>
+		</div>
+		<div class="row">
+			<div class="col-md-1">
+				7
+			</div>
+			<div class="col-md-5">
+				<form action="test06/params" method="POST">
+					<a href="test06/params?username=yes" class="btn btn-large">RequestParam - Get</a>
+					<input type="hidden" name="username" value="hidden-yes"/>
+					<input type="submit" value="POST" class="btn btn-primary">
+				</form>
+			</div>
+			<div class="col-md-6">试验RequestParam</div>
+		</div>
+		<div class="row">
+			<div class="col-md-1">
+				8
+			</div>
+			<div class="col-md-5">
+				<form action="test07/RequestAttributes" method="POST">
+					<input type="hidden" name="id" value="100"/>
+					<input type="text" name="username" value="Jimmy"/>
+					<input type="text" name="age" value="12"/>					
+					<input type="submit" value="POST" class="btn btn-primary">
+				</form>
+			</div>
+			<div class="col-md-6">RequestAttributes</div>
+		</div>
 		
 	</div>
 	<!-- /.container-fluid -->
