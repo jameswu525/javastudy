@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Date;
@@ -44,7 +45,8 @@ public class Server extends Frame {
 		int loop = 1;
 		try {
 			http = new HttpSocket(port);
-			String status = "Service is listening on http://" + http.getInetAddress().getLocalHost().getHostAddress()
+//			http.getInetAddress();
+			String status = "Service is listening on http://" + InetAddress.getLocalHost().getHostAddress()
 					+ ":" + http.getLocalPort();
 			System.out.println(status);
 			panel.appendLabel(status);
@@ -64,7 +66,7 @@ public class Server extends Frame {
 				boolean isFavicon = false;
 				boolean isFirst = true;
 				String path = "";
-				while (socketIn.hasNextLine()) {
+				while (socketIn.hasNextLine() && !isFavicon) {
 					head = socketIn.nextLine();
 					if ("".equals(head)) {
 						break;
